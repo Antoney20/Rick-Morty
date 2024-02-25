@@ -12,7 +12,7 @@ function Nav() {
                   <h1 className='sm:hidden text-2xl font-medium'>R&M</h1>
                 </a>
 
-                <Link to="/" 
+                <Link to="/Characters" 
                     className='ml-3 sm:ml-10 text-base sm:text-xl font-base text-black hover:text-gray-600 text-bold'  
                 >
                 Character
@@ -22,6 +22,11 @@ function Nav() {
                    className='hidden sm:inline-block ml-3 sm:ml-6 text-base sm:text-xl font-base  text-black hover:text-gray-600 text-bold'
                    >
                    Locations
+                   </Link>
+                   <Link to="/episodes"
+                   className='hidden sm:inline-block ml-3 sm:ml-6 text-base sm:text-xl font-base  text-black hover:text-gray-600 text-bold'
+                   >
+                   Episodes
                    </Link>
             </nav>
             <div className='flex items-center md:ml-12'>
