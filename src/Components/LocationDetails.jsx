@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
@@ -53,27 +53,26 @@ const LocationDetails = () => {
   }
 
   return (
-    <div>
-      <h1>{location.name}</h1>
-      <h3>{location.dimension}</h3>
+    <div className="py-6 px-4">
+      <h1 className="text-3xl font-bold mb-4">{location.name}</h1>
+      <h3 className="text-lg font-semibold mb-8">{location.dimension}</h3>
 
-      <br></br>
-      <h1>Residents List:</h1>
-      <div className='container w-100 h-full py-12 bg-slate-300'>
-        <div className="grid grid-cols-4 gap-4">
-          {characters.map((character, index) => (
-            <div key={index} className="w-32 h-320 flex items-center justify-center bg-white">
+      <h1 className="text-2xl font-semibold mb-4">Residents List:</h1>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {characters.map((character, index) => (
+          <div key={index} className="flex flex-col items-center">
+            <div className="bg-white p-4 rounded-lg shadow-md w-full">
               {character ? (
-                <div>
-                  <img src={character.image} alt={character.name} />
-                  <p>{character.name}</p>
-                </div>
+                <>
+                  <img src={character.image} alt={character.name} className="w-full rounded-lg mb-2" />
+                  <p className="text-center font-semibold">{character.name}</p>
+                </>
               ) : (
-                'Character not found'
+                <p className="text-center">Character not found</p>
               )}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );

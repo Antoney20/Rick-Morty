@@ -1,5 +1,6 @@
 import  { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 const EpisodesList = () => {
@@ -36,7 +37,7 @@ const EpisodesList = () => {
   };
 
   return (
-    <div className='bg-gradient-to-r from-gray-100 via-purple-200 to-pink-100 w-full mt-0 px-0 py-0'>
+    <div className='bg-gray-50 w-full mt-0 px-0 py-0'>
     <div >
     <div className=' '>
       {isLoading && <p>Loading characters...</p>}
@@ -45,13 +46,14 @@ const EpisodesList = () => {
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 scroll-smooth md:scroll-auto ">
                 {episodes.map((episode) => (
                     <div className="max-w-[300px] w-full mx-auto" key={episode.id}>
-                    <div className="min-h-40 w-full shadow-lg  p-2 overflow-hidden rounded-md group-hover:opacity-75 font-semibold bg-gradient-to-r from-indigo-50" 
+                    <Link to={`/episode/${episode.id}`}>
+                    <div className="min-h-30 w-full shadow-lg  p-2 overflow-hidden rounded-md group-hover:opacity-75 font-semibold " 
                     >
                       <p>Name: {episode.name}</p>
                       <p>Air Date: {episode.air_date}</p>
                       <p>Code: {episode.episode}</p>
-                      <p>Characters: {episode.characters}</p>
                     </div>
+                    </Link>
                     </div>
 
                 ))}

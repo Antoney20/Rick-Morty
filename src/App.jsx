@@ -7,6 +7,8 @@ import CharacterDetails from './Components/CharacterDetails';
 import EpisodesList from './Components/Episodes';
 import LocationDetails from './Components/LocationDetails';
 import Home from './Components/Home';
+import EpisodeDetails from './Components/EpisodeDetails'
+
 
 const App = () => {
   return (
@@ -21,6 +23,7 @@ const App = () => {
         <Route path="/location/:id" element={<LocationDetails/>} />
         <Route path="/character/:id" element={<CharacterDetails/>} />
         <Route path='/episodes'  element={<EpisodesList/> }/>
+        <Route path='/episode/:id' element={<EpisodeDetails/>} />
       </Routes>
       </div>
       <Footer/>

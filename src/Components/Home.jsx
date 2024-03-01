@@ -59,9 +59,19 @@ const Home = () => {
 
   return (
     <div>
-      <div>
-        <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-        <button onClick={handleSearch}>Search</button>
+      <div className="flex justify-center items-center bg-gray-100 p-4 rounded-lg mb-4">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="bg-white border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+        />
+        <button
+        onClick={handleSearch}
+        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-blue-100"
+        >
+        Search
+        </button>
       </div>
       <div>
         <h2>Characters:</h2>
@@ -69,32 +79,50 @@ const Home = () => {
           <p>Loading characters...</p>
         ) : (
           <div className="grid grid-cols-4 gap-4">
-            {characters.map((character) => (
-              <div key={character.id}>
-                <img src={character.image} alt={character.name} className="w-full" />
-                <p>{character.name}</p>
-              </div>
-            ))}
+          {characters.map((character) => (
+            <div key={character.id} className="bg-white rounded-lg shadow-md p-4">
+              <img src={character.image} alt={character.name} className="w-full rounded-t-lg" />
+              <p className="text-center">{character.name}</p>
+            </div>
+          ))}
           </div>
         )}
-        {showMoreCharacters && (
-          <button onClick={handleShowMoreCharacters}>Show More Characters</button>
-        )}
+        <div className="flex p-2  mt-4 justify-center">
+          {showMoreCharacters && (
+            <button
+              onClick={handleShowMoreCharacters}
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-blue-100"
+            >
+            Show More Characters
+            </button>
+          )}
+        </div>
+
       </div>
       <div>
         <h2>Locations:</h2>
         {isLoadingLocations ? (
           <p>Loading locations...</p>
         ) : (
-          <ul>
-            {locations.map((location) => (
-              <li key={location.id}>{location.name}</li>
-            ))}
-          </ul>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+             { locations.map((location) => (
+              <li key={location.id} className="bg-white rounded-lg shadow-md p-4">
+               {location.name}
+                </li>
+              ))}
+        </ul>
+
         )}
+        <div className="flex p-2  mt-4 justify-center">
         {showMoreLocations && (
-          <button onClick={handleShowMoreLocations}>Show More Locations</button>
+          <button 
+          onClick={handleShowMoreLocations}
+          
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-blue-100"
+          >
+          Show More Locations</button>
         )}
+        </div>
       </div>
     </div>
   );
