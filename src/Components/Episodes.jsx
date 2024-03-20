@@ -12,7 +12,7 @@ const EpisodesList = () => {
   const fetchEpisodes = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(`https://rickandmortyapi.com/api/episode`);
+      const response = await axios.get(`https://rickandmortyapi.com/api/episode?page=${currentPage}`);
       const { results, info } = response.data;
       setEpisodes(results);
       setTotalPages(info.pages);

@@ -6,6 +6,7 @@ const CharacterList = () => {
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
   const [totalPages, setTotalPages] = useState(1);
   const [count, setCount] = useState(null); 
 
@@ -37,15 +38,35 @@ const CharacterList = () => {
     setCurrentPage((prevPage) => prevPage - 1);
   };
 
+  const filteredCharacters = characters.filter((character) =>
+  character.name.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
+
   return (
-    <div>
     <div >
     <div className=''>
+    <h1 className="text-3xl font-bold mb-2 mt-4 text-center">Characters </h1>
+      <div className='shadow-md p-2 py-2 mb-8 '>
       {isLoading && <p>Loading characters...</p>}
+      <div className="mb-4 mx-auto max-w-md flex items-center">
+      <input
+        type="text"
+        placeholder="Search by character name..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="ring-2 ring-offset-cyan-200 focus:ring-cyan-500 focus:outline-none rounded-lg p-2 px-4 mt-4 mb-2 mx-auto block w-full md:w-96"
+      />
+      <button
+        className="ml-2 px-4 py-2 rounded-lg ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-offset-2 focus:ring-offset-gray-500 ring-gray-300 focus:ring-blue-500 focus:outline-none bg-blue-500 text-white hover:bg-blue-600"
+      >
+        Search
+      </button>
+      </div>
       {characters.length > 0 && (
         <ul>
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 scroll-smooth md:scroll-auto">
-                {characters.map((character) => (
+                {filteredCharacters.map((character) => (
                     <div className="max-w-[300px] w-full mx-auto" key={character.id}>
                     <div className="min-h-50 w-full shadow-lg  overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 font-semibold " 
                     >

@@ -59,20 +59,22 @@ const Home = () => {
 
   return (
     <div>
-      <div className="flex justify-center items-center bg-gray-100 p-4 rounded-lg mb-4">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="bg-white border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-        />
-        <button
+      <div className="mb-4 mx-auto max-w-md flex items-center">
+      <input
+        type="text"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="ring-2 ring-offset-cyan-200 focus:ring-cyan-500 focus:outline-none
+         rounded-lg p-2 px-4 mt-4 mb-2 mx-auto block w-full md:w-96"
+      />
+      <button
         onClick={handleSearch}
-        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-blue-100"
-        >
+        className="ml-2 px-4 py-2 rounded-lg ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-offset-2 focus:ring-offset-gray-500 ring-gray-300 focus:ring-blue-500 focus:outline-none bg-blue-500 text-white hover:bg-blue-600"
+      >
         Search
-        </button>
+      </button>
       </div>
+
       <div>
         <h2>Characters:</h2>
         {isLoadingCharacters ? (
