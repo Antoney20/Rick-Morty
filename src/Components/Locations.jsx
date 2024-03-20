@@ -10,34 +10,37 @@ const Locations = () => {
   const [totalPages, setTotalPages] = useState(1);
   
 
-  const fetchLocations = async ( ) => {
+  const fetchLocations = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get('https://rickandmortyapi.com/api/location');
+      const response = await axios.get(`https://rickandmortyapi.com/api/location?page=${currentPage}`);
       const { results, info } = response.data;
       setLocations(results);
       setTotalPages(info.pages);
     } catch (error) {
       console.error('Error fetching locations:', error);
+    } finally {
+      setIsLoading(false);
     }
-    finally {
-        setIsLoading(false);
-      }
   };
+  
 
   useEffect(() => {
     fetchLocations(currentPage);
   }, [currentPage]);
 
   const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
+    if (currentPage < totalPages) {
+      setCurrentPage(prevPage => prevPage + 1);
+    }
   };
-
-
-
+  
   const handlePrevPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
+    if (currentPage > 1) {
+      setCurrentPage(prevPage => prevPage - 1);
+    }
   };
+  
 
   const filteredLocations = locations.filter((location) =>
     location.name.toLowerCase().includes(searchQuery.toLowerCase())
